@@ -18,6 +18,11 @@ This code uses the following components from sparkfun: <ul>
 This code uses IR code for the comcast DTA remote which is 38Khz XMP IR Protocol.<br />
 (AKA: http://www.easypctutorials.com/wp-content/uploads/et_temp/photo2-1104078_958x340.jpg)
 
+Please refer to the <a href="https://github.com/cobookman/Arduino-IR-Blaster-for-Comcast-DTA-STB-with-Web-Interface/blob/master/schematic.jpg">Schematic</a> for pin layout. Not listed is the IR Receiver, which has:<br />
+VCC -> +5v <br />
+CTL -> Pin 4 <br />
+GND -> GND
+
 To get the on/off times for the IR, I used ladyada raw IR decoder. <br />
 Her tutorial can be found here: http://www.ladyada.net/learn/sensors/ir.html<br />
 And the IR Decoder is found: https://github.com/adafruit/Raw-IR-decoder-for-Arduino<br />
