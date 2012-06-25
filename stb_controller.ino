@@ -11,6 +11,7 @@ const int rLED = 7;
 const int gLED = 6;
 const int bLED = 5;
 
+boolean ethernetWorks = false;      // Only enable webapp if we have active internet connection
 int upState = 0;
 int dState = 0;
 
@@ -55,20 +56,25 @@ void setup()   {
   // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP"); //Ethernet Failed, allow buttons to still work though
+    //Since Etherenet failed, disable all internet functions
+    ethernetWorks = true;
     //Blink LED between Red, green and blue once to exclaim error
+    for(int i = 0; i<5; i++) {
     led(red);
     delay(200);
     led(green);
     delay(200);
     led(blue);
     delay(200);
+    }
+    led(red);
   }
   else {
     //Blink quickly to blue to say internet success!
     led(blue);
     delay(100);
     led(red);
-
+    ethernetWorks = true;    // Enable Internet Functions
     // print your local IP address:
     Serial.print("My IP address: ");
     for (byte thisByte = 0; thisByte < 4; thisByte++) {
@@ -104,9 +110,9 @@ void loop()
     delay(200);
     led(red);
   }
-  //===Start listening for web commands===
-  WebServerLoop();
-  
+
+  // Disable when no internet
+  if(ethernetWorks) {
   //====Act on webserver commands======
   if(webCmd !=-1)
   {
@@ -129,7 +135,12 @@ void loop()
     //reset comd
     webCmd = -1;
   }
-}
+  
+  //===Start listening for web commands===
+  WebServerLoop();
+}//End the check for internet capabilities
+}//End the void loop() functionp
+
 void led(int color)
 {
  switch(color) {
@@ -210,7 +221,7 @@ void WebServerLoop()
         {
           // Yes, we have a pending request.  Clear the flag and then send the webpage to the client
           bPendingHttpResponse = false;
-          client.println("<html><body>AEPi TV Remote<table>");
+          client.println("<html><body><table><tr><td colspan='3'><center>TV Remote</center></td></tr>");
           //Display Channels 1,2,3
             client.println("<tr><td>");
             SubmitButton(client, "1", CHAN1);
