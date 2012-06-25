@@ -101,10 +101,9 @@ void loop()
     chanD(); 
     delay(200);
     led(red);
-    
-    delay(200);
-
   }
+  // Start listening for web commands
+  WebServerLoop();
   // Act on webserver commands
   if(webCmd !=-1)
   {
@@ -122,13 +121,9 @@ void loop()
       case CHAN9: led(green); chan9(); led(red); break;
       case CHAN0: led(green); chan0(); led(red); break;
     }
-
       //reset comd
     webCmd = -1;
   }
-  // Start listening for web commands
-  WebServerLoop();
-  
 }
 void led(int color)
 {
