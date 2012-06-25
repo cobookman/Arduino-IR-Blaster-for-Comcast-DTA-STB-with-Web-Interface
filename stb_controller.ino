@@ -722,7 +722,7 @@ void chan0()
   pulseIR(320);
   delayMicroseconds(760); 
   pulseIR(320);
-  delayMicroseconds(1560); 
+  delayMicroseconds(1560);
   pulseIR(340);
   delayMicroseconds(620);
   pulseIR(330);
