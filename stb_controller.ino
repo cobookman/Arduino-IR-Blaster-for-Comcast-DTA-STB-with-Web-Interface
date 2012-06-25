@@ -85,30 +85,33 @@ void setup()   {
 
 void loop()                     
 {
+  //====This code is for the Push Buttons which are mounted on the front===
+  //====                          of the device                         ====
   upState = digitalRead(upPin);
   dState = digitalRead(dPin);
-  if(upState == HIGH) 
+  if(upState == HIGH)   //Up Pushbutton Pressed, go up a channel
   {
-    led(blue);  //go to Blue LED state
+    led(blue);  //go to Blue LED state (notification purposes)
     chanUP(); 
     delay(200);
-    led(red);   //go to RED LED state
+    led(red);   //go to RED LED state (notification purposes)
   }
 
-  if(dState == HIGH)
+  if(dState == HIGH)  //Down Pushbutton pressed, go down a channel
   {
     led(blue);
     chanD(); 
     delay(200);
     led(red);
-    
-    delay(200);
-
   }
-  // Act on webserver commands
+  //===Start listening for web commands===
+  WebServerLoop();
+  
+  //====Act on webserver commands======
   if(webCmd !=-1)
   {
-    switch(webCmd) {
+    switch(webCmd)       //switch between buttons # 0-9 as well as up/down (web interface)
+    {                   
       case CHANUP:   led(green); chanUP(); led(red); break;
       case CHANDOWN: led(green); chanD();  led(red); break;
       case CHAN1: led(green); chan1(); led(red); break;
@@ -123,12 +126,9 @@ void loop()
       case CHAN0: led(green); chan0(); led(red); break;
     }
 
-      //reset comd
+    //reset comd
     webCmd = -1;
   }
-  // Start listening for web commands
-  WebServerLoop();
-  
 }
 void led(int color)
 {
