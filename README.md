@@ -27,7 +27,7 @@ To get the on/off times for the IR, I used ladyada raw IR decoder. <br />
 Her tutorial can be found here: http://www.ladyada.net/learn/sensors/ir.html<br />
 And the IR Decoder is found: https://github.com/adafruit/Raw-IR-decoder-for-Arduino<br />
 
-Instructions on using the IR Decoder, and how to use it.
+Instructions on using the IR Decoder.
 =========================================================
 <ol>
 <li>Hook up IR detector/receiver to arduino.</li>
