@@ -1,7 +1,8 @@
 Arduino-IR-Blaster-for-Comcast-DTA-STB-with-Web-Interface
 =========================================================
-
 Arduino IR Remote Controll with Web Interface (for comcast DTA STB)
+
+This code is part of an Arduino Tutorial which can be found here: http://colinbookman.com/arduino_ir_blaster/
 
 This code uses the following components from sparkfun: <ul>
 <li>Arduino UNO:  		http://www.sparkfun.com/products/11021 </li>
